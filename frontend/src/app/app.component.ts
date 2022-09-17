@@ -1,6 +1,14 @@
-import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
-import { WebcamImage } from 'ngx-webcam';
+import {Component} from '@angular/core';
+import {WebcamImage} from "ngx-webcam";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {catchError} from "rxjs";
+
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
+  })
+};
 
 @Component({
   selector: 'app-root',
