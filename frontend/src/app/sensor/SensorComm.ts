@@ -1,11 +1,11 @@
 export const connect = async (
   onTemperatureUpdate: (temp: number) => void,
   onHumidityUpdate: (humidity: number) => void
-) => {
+): Promise<boolean> => {
   // @ts-ignore
   const bluetooth = navigator.bluetooth;
   if (!('bluetooth' in navigator)) {
-    return;
+    return false;
   }
   try {
     const device = await bluetooth.requestDevice({
@@ -35,8 +35,10 @@ export const connect = async (
       target: { value: DataView };
     }) => onHumidityUpdate(event.target.value.getFloat32(0, true));
     humidityConfigCharacteristic.startNotifications();
+    return true;
   } catch {
     console.error('Could not connect to Bluetooth device.');
+    return false;
   }
 };
 

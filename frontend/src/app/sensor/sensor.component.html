@@ -6,7 +6,7 @@
     </div>
   </div>
 
-  <div class="sensorInteraction">
+  <div class="sensorInteraction" *ngIf="showSensor">
     <div class="sensorValueWrap">
       <div class="sensorValue">
         <div class="sensorValueV">{{ temperature | number: "1.1" }}</div>
@@ -21,4 +21,15 @@
       Click to connect to sensor
     </button>
   </div>
+
+  <div class="sensorInteraction" *ngIf="!showSensor">
+    <div style="margin-bottom: 12px; text-align: center">Data collection complete!</div>
+    <button id="sensorButton" (click)="handleGoNext()">
+      Click to continue
+    </button>
+  </div>
+</div>
+
+<div class="canvasWrap">
+  <canvas #canvas id="canvas" style="height: 240px; width: 100%"></canvas>
 </div>
