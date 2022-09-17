@@ -1,14 +1,16 @@
+<body>
+<h1 style="color: white; text-align: center; margin-top: 60px;">Please give us some details about your home</h1>
 <div class="full-width-table">
   <mat-form-field appearance="fill">
-    <mat-label>Stromverbrauch (in kWh)</mat-label>
+    <mat-label style="color: white">Stromverbrauch (in kWh)</mat-label>
     <input matInput>
   </mat-form-field>
   <mat-form-field appearance="fill">
-    <mat-label>Heizkosten (in CHF)</mat-label>
+    <mat-label style="color: white">Heizkosten (in CHF)</mat-label>
     <input matInput>
   </mat-form-field>
   <mat-form-field appearance="fill">
-    <mat-label>Heizmethode</mat-label>
+    <mat-label style="color: white">Heizmethode</mat-label>
     <mat-select>
       <mat-option value="one">Gas</mat-option>
       <mat-option value="two">Öl</mat-option>
@@ -16,4 +18,6 @@
       <mat-option value="two">Pellets</mat-option>
     </mat-select>
   </mat-form-field>
+  <button mat-stroked-button style="color: white" (click)="goToSensors($event)">Weiter</button>
 </div>
+</body>
