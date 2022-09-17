@@ -1,13 +1,14 @@
 import numpy as np
+import matplotlib.pyplot as plt
 import requests
 import ast
 import base64
 
 
 def test_post_img():
-    img = (np.random.rand(4, 5) * 256).astype(np.uint8)
+    img = plt.imread("../CubiCasa5k/data/IMG_4238_compressed.jpg")
     parameters = {"image_data": base64.b64encode(img), "image_shape": str(img.shape)}
-    ret = requests.post("https://fast-hamlet-23582.herokuapp.com/process_floorplan", params=parameters)
+    ret = requests.post("http://localhost:8989/process_floorplan", data=parameters)
     print("Output shape", ret.json())
     assert "200" in str(ret)
 

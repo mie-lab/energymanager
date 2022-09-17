@@ -11,6 +11,7 @@ from backend.process_floorplan import process_floorplan
 app = Flask(__name__)
 CORS(app)
 
+
 @app.route("/", methods=["GET", "POST"])
 def test_method():
     return jsonify("Welcome to EnergyManager")
@@ -24,12 +25,17 @@ def call_process_floorplan():
     b64file = base64.b64decode(args.get("image_data"))
     image = Image.open(io.BytesIO(b64file))
     img = np.array(image)
+    # # debugging:
+    # img = np.load("../CubiCasa5k/data/test_zug.npy")
+    # print("Img shape", img.shape)
 
     # run img processing
-    out = process_floorplan(img)
+    result_dict = process_floorplan(img)
+    # TODO: make visualization work
+    del result_dict["visualization"]
 
     # return output
-    response = jsonify(str(out))
+    response = jsonify(result_dict)
     response.headers.add("Access-Control-Allow-Origin", "*")
     return response
 
