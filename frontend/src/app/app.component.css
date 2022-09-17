@@ -1,0 +1,12 @@
+body {
+  background-image: url("../assets/welcome_page.png");
+  background-color: #cccccc;
+}
+
+.webcam-image {
+  display: inline-block;
+  position: relative;
+  line-height: 0;
+  height: 600px;
+  width: 360px;
+}
