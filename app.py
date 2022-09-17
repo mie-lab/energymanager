@@ -9,7 +9,7 @@ app = Flask(__name__)
 @app.route("/process_floorplan", methods=["GET"])
 def call_process_floorplan():
     out = process_floorplan(np.random.rand(4, 5))
-    return jsonify(out)
+    return jsonify(str(out))
 
 
 if __name__ == "__main__":
