@@ -17,6 +17,7 @@ def test_method():
 @app.route("/process_floorplan", methods=["GET", "POST"])
 def call_process_floorplan():
     # get image and image shape
+    print("ARGS", request.args)
     file = request.args.get("image_data")
     print("Image shape arg", request.args.get("image_shape"))
     shape = eval(request.args.get("image_shape"))
