@@ -25,6 +25,8 @@ export class AppComponent {
   handleImage(webcamImage: WebcamImage) {
     this.webcamImage = webcamImage;
 
+    console.log(this.webcamImage.imageAsBase64)
+
     this.http.post<WebcamImage>("http://localhost:8989/process_floorplan", {"image_data": this.webcamImage.imageAsBase64, "image_shape": '(640,480)'}, httpOptions).subscribe(data => {
       console.log("Did the post request to the backend!");
     })

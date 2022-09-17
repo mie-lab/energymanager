@@ -1,4 +1,6 @@
+from PIL import Image
 import numpy as np
+import io
 import base64
 import ast
 from flask import Flask, jsonify, request, after_this_request
@@ -21,13 +23,13 @@ def call_process_floorplan():
     shape = eval(args.get("image_shape"))
     # decode
     b64file = base64.b64decode(args.get("image_data"))
-    img = np.fromstring(b64file, np.uint8).reshape(shape)
+    image = Image.open(io.BytesIO(b64file))
+    img = np.array(image)
 
     # run img processing
     out = process_floorplan(img)
 
     # return output
-    print("aaaaaa")
     response = jsonify(str(out))
     response.headers.add("Access-Control-Allow-Origin", "*")
     return response
