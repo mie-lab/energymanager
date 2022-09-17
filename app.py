@@ -7,6 +7,7 @@ from backend.process_floorplan import process_floorplan
 
 app = Flask(__name__)
 CORS(app)
+app.config["CORS_HEADERS"] = "Content-Type"
 
 
 @app.route("/", methods=["GET"])
