@@ -32,6 +32,6 @@ export class SensorComponent implements OnInit {
         this.changeDetectorRef.detectChanges();
         console.log('updating humidity', humidity);
       }
-    );
+    ).then();
   };
 }
