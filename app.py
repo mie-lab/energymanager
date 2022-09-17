@@ -1,10 +1,12 @@
 import numpy as np
 import base64
 from flask import Flask, jsonify, request, after_this_request
+from flask_cors import CORS
 
 from backend.process_floorplan import process_floorplan
 
 app = Flask(__name__)
+CORS(app)
 
 
 @app.route("/", methods=["GET"])
