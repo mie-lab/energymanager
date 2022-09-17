@@ -21,6 +21,7 @@ export class AppComponent {
   title = "EnergyManager"
   showCamera: boolean = true;
   showTable: boolean = false;
+  showSensor: boolean = false;
 
   constructor(private http: HttpClient, private router: Router) {
   }
