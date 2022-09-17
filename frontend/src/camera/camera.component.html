@@ -1,17 +1,16 @@
 <!-- Taken from https://edupala.com/how-capture-image-using-angular-camera/ -->
-<div *ngIf="isCameraExist; else noCameraExist">
+<div *ngIf="isCameraExist; else noCameraExist" style="padding-top: 100px">
   <div style="text-align:center">
+    <h2 style="color: white">Kindly take a picture of the floor-plan</h2>
     <div class="btn-group">
       <button class="button" (click)="takeSnapshot()">Take Picture</button>
       <button class="button" (click)="changeWebCame(true)">
         Toggle Camera
       </button>
-      <button class="button" (click)="onOffWebCame()">Switch camera</button>
     </div>
-    <br />
+    <br/>
     <webcam
-      [height]="500"
-      [width]="1000"
+      [height]="260"
       [trigger]="triggerObservable"
       (imageCapture)="handleImage($event)"
       *ngIf="showWebcam"
@@ -27,4 +26,4 @@
   </div>
 </div>
 
-<ng-template #noCameraExist> Camera device not available </ng-template>
+<ng-template #noCameraExist> Camera device not available</ng-template>

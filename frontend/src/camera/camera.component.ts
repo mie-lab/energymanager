@@ -36,14 +36,6 @@ export class CameraComponent implements OnInit {
     this.trigger.next();
   }
 
-  onOffWebCame() {
-    this.showWebcam = !this.showWebcam;
-  }
-
-  handleInitError(error: WebcamInitError) {
-    this.errors.push(error);
-  }
-
   changeWebCame(directionOrDeviceId: boolean | string) {
     this.nextWebcam.next(directionOrDeviceId);
   }

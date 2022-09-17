@@ -1,7 +1,7 @@
-import {Component} from '@angular/core';
+import {Component, ElementRef, ViewChild} from '@angular/core';
 import {WebcamImage} from "ngx-webcam";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {catchError} from "rxjs";
+import {Router} from "@angular/router";
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -18,19 +18,22 @@ const httpOptions = {
 export class AppComponent {
   // webcamImage: WebcamImage = null;
   webcamImage: WebcamImage | undefined;
+  title = "EnergyManager"
+  showCamera: boolean = true;
+  showTable: boolean = false;
+  showSensor: boolean = false;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {
+  }
 
   handleImage(webcamImage: WebcamImage) {
     this.webcamImage = webcamImage;
 
-    this.http
-      .post<WebcamImage>(
-        'https://fast-hamlet-23582.herokuapp.com/',
-        this.webcamImage
-      )
-      .subscribe((data) => {
-        console.log('Did the post request to the backend!');
-      });
+    this.http.post<WebcamImage>("https://fast-hamlet-23582.herokuapp.com/process_floorplan", {"image_data": this.webcamImage.imageAsBase64}, httpOptions).subscribe(data => {
+      console.log("Did the post request to the backend!");
+
+      this.showCamera = false;
+      this.showTable = true;
+    })
   }
 }

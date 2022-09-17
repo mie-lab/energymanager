@@ -1,10 +1,14 @@
-<!-- <app-camera (getPicture)="handleImage($event)"></app-camera>
-
-<div class="webcam-image" *ngIf="webcamImage">
-  <img [src]="webcamImage.imageAsDataUrl" />
-</div> -->
-
-<!-- <app-sensor></app-sensor> -->
-
-<app-viz></app-viz>
-<app-sensorviz></app-sensorviz>
+<body>
+<div *ngIf="showCamera">
+  <app-camera (getPicture)="handleImage($event)"></app-camera>
+  <div class="webcam-image" *ngIf="webcamImage">
+    <img style="height: 260px; margin-left: 24px" [src]="webcamImage.imageAsDataUrl"/>
+  </div>
+</div>
+<div *ngIf="showTable">
+  <app-settings></app-settings>
+</div>
+<div *ngIf="showSensor">
+  <app-sensor></app-sensor>
+</div>
+</body>
