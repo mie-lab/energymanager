@@ -1,23 +1,41 @@
 <body>
-<h1 style="color: white; text-align: center; margin-top: 60px;">Please give us some details about your home</h1>
-<div class="full-width-table">
-  <mat-form-field appearance="fill">
-    <mat-label style="color: white">Stromverbrauch (in kWh)</mat-label>
-    <input matInput>
-  </mat-form-field>
-  <mat-form-field appearance="fill">
-    <mat-label style="color: white">Heizkosten (in CHF)</mat-label>
-    <input matInput>
-  </mat-form-field>
-  <mat-form-field appearance="fill">
-    <mat-label style="color: white">Heizmethode</mat-label>
-    <mat-select>
-      <mat-option value="one">Gas</mat-option>
-      <mat-option value="two">Öl</mat-option>
-      <mat-option value="two">Wärmepumpe</mat-option>
-      <mat-option value="two">Pellets</mat-option>
-    </mat-select>
-  </mat-form-field>
-  <button mat-stroked-button style="color: white" (click)="goToSensors($event)">Weiter</button>
-</div>
+  <h1 class="title">Your home</h1>
+  <h2 class="subtitle">Please give us some details about your home!</h2>
+  <div
+    style="
+      opacity: 0.5;
+      text-align: center;
+      color: rgb(252, 252, 252);
+      margin-bottom: 5rem;
+    "
+  >
+    EnergyManager needs those to improve its recommendations.
+  </div>
+
+  <div class="full-width-table">
+    <mat-form-field appearance="fill">
+      <mat-label style="color: white">Stromverbrauch (in kWh)</mat-label>
+      <input matInput />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label style="color: white">Heizkosten (in CHF)</mat-label>
+      <input matInput />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label style="color: white">Heizmethode</mat-label>
+      <mat-select>
+        <mat-option value="one">Gas</mat-option>
+        <mat-option value="two">Öl</mat-option>
+        <mat-option value="two">Wärmepumpe</mat-option>
+        <mat-option value="two">Pellets</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button
+      mat-stroked-button
+      style="color: white"
+      (click)="goToSensors($event)"
+    >
+      Weiter
+    </button>
+  </div>
 </body>

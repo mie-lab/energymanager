@@ -11,7 +11,7 @@ export class AppComponent {
   title = "EnergyManager"
 
   constructor(private router: Router) {
-    this.router.navigate(['camera']).then()
+    this.router.navigate(['results']).then()
   }
 
 }

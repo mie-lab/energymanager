@@ -1,7 +1,37 @@
 html,
 body {
   font-family: "Heebo", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #9B26AF;
+  background-color: #9b26af;
   margin: 0;
   height: 100%;
+}
+
+.pretitle {
+  color: white;
+  text-align: center;
+  margin: 4rem 1.6rem 1rem !important;
+  font-weight: 300 !important;
+}
+
+.title {
+  font-weight: 700 !important;
+  font-size: 2rem !important;
+  text-align: center;
+  margin: 2rem 1.6rem 0rem !important;
+  line-height: 2rem !important;
+  color: rgb(252, 252, 252);
+}
+
+.subtitle {
+  color: white;
+  text-align: center;
+  margin: 2rem 1.6rem 1rem !important;
+  font-weight: 300 !important;
+}
+
+.boxx {
+  background-color: #f1f1f1;
+  border-radius: 6px;
+  border: 1px solid #dedede;
+  margin: 12px;
 }

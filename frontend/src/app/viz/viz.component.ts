@@ -1,4 +1,5 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
+import Chart from 'chart.js/auto';
 import * as THREE from 'three';
 import { TrackballControls } from 'three/examples/jsm/controls/TrackballControls';
 
@@ -11,6 +12,9 @@ export class VizComponent implements OnInit {
   @ViewChild('canvas')
   // @ts-ignore
   private canvasRef: ElementRef;
+  @ViewChild('canvas2')
+  // @ts-ignore
+  private canvas2Ref: ElementRef;
 
   //* Cube Properties
   @Input() public rotationSpeedX: number = 0.0;
@@ -119,5 +123,47 @@ export class VizComponent implements OnInit {
   ngAfterViewInit() {
     this.createScene();
     this.startRenderingLoop();
+
+    const labels = [
+      0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+      21, 22, 23, 24,
+    ].map((l) => l.toString());
+    new Chart(this.canvas2Ref.nativeElement.getContext('2d'), {
+      type: 'line',
+      data: {
+        labels: labels,
+        datasets: [
+          {
+            label: 'Indoors temperature',
+            data: [
+              23, 23, 22.9, 22.8, 22.5, 22.3, 22.1, 21.4, 21.1, 20.8, 20.3,
+              19.4, 19.5, 19.0, 18.7, 18.1, 17.5, 17.4, 17.1, 16.5, 15.5, 15.1,
+              14.2, 13.1, 12.5, 11.7, 11.1,
+            ],
+            fill: false,
+            borderColor: 'rgb(75, 192, 192)',
+            tension: 0.1,
+          },
+          {
+            label: 'Outdoors temperature',
+            data: [
+              23, 23, 22.9, 22.8, 22.5, 22.3, 22.1, 21.4, 21.1, 20.8, 20.3,
+              19.4, 19.5, 19.0, 18.7, 18.1, 17.5, 17.4, 17.1, 16.5, 15.5, 15.1,
+              14.2, 13.1, 12.5, 11.7, 11.1,
+            ].map((n, i) => n + Math.random() * 4 - i / 5 - 5),
+            fill: false,
+            borderColor: 'rgb(75, 192, 75)',
+            tension: 0.1,
+          },
+        ],
+      },
+      options: {
+        scales: {
+          y: {
+            beginAtZero: true,
+          },
+        },
+      },
+    });
   }
 }

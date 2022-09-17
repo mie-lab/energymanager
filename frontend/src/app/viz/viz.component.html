@@ -1,16 +1,39 @@
-<div class="wrap">
-  <div class="title">The energy manager recommends</div>
-  <div class="canvasWrap">
-    <canvas #canvas id="canvas" style="height: 240px; width: 100%"></canvas>
+<body>
+  <div class="wrap">
+    <div class="title">The EnergyManager recommends</div>
+    <div class="subtitle">
+      Our AI analyzed your floorplan, your power consumption, and the insulation
+      of your house, and came up with the following recommendations.
+    </div>
+
+    <div class="canvasWrap">
+      <canvas #canvas id="canvas" style="height: 240px; width: 100%"></canvas>
+    </div>
+    <div class="slidecontainer">
+      <input
+        type="range"
+        min="1"
+        max="100"
+        value="50"
+        class="slider"
+        id="myRange"
+      />
+    </div>
+
+    <div class="wrap">
+      <div class="canvasWrap">
+        <canvas
+          #canvas2
+          id="canvas2"
+          style="height: 240px; width: 100%"
+        ></canvas>
+      </div>
+
+      <div style="margin: 0 12px">
+        <button class="recommendationButton">
+          Click here to download your <br>recommendation report
+        </button>
+      </div>
+    </div>
   </div>
-  <div class="slidecontainer">
-    <input
-      type="range"
-      min="1"
-      max="100"
-      value="50"
-      class="slider"
-      id="myRange"
-    />
-  </div>
-</div>
+</body>

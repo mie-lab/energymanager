@@ -1,9 +1,10 @@
-import {RouterModule, Routes} from '@angular/router';
-import {SettingsComponent} from "./settings/settings.component";
-import {AppComponent} from "./app.component";
-import {NgModule} from "@angular/core";
-import {SensorComponent} from "./sensor/sensor.component";
-import {CameraComponent} from "./camera/camera.component";
+import { RouterModule, Routes } from '@angular/router';
+import { SettingsComponent } from './settings/settings.component';
+import { AppComponent } from './app.component';
+import { NgModule } from '@angular/core';
+import { SensorComponent } from './sensor/sensor.component';
+import { CameraComponent } from './camera/camera.component';
+import { VizComponent } from './viz/viz.component';
 
 const routes: Routes = [
   {
@@ -12,24 +13,26 @@ const routes: Routes = [
     children: [
       {
         path: 'camera',
-        component: CameraComponent
+        component: CameraComponent,
       },
       {
         path: 'settings',
-        component: SettingsComponent
+        component: SettingsComponent,
       },
       {
         path: 'sensors',
-        component: SensorComponent
-      }
-    ]
-  }
+        component: SensorComponent,
+      },
+      {
+        path: 'results',
+        component: VizComponent,
+      },
+    ],
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule {
-}
-
+export class AppRoutingModule {}

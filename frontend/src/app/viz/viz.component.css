@@ -1,4 +1,15 @@
 .wrap {
+  padding-bottom: 24px;
+}
+
+.canvasWrap {
+  margin: 12px;
+  border: 1px solid #c3c3c3;
+  border-radius: 3px;
+  background-color: rgb(252, 252, 252);
+}
+
+.wrap {
   display: flex;
   flex-direction: column;
 }
@@ -9,12 +20,6 @@
   margin: 2rem 0;
   text-align: center;
   line-height: 2rem;
-}
-
-.canvasWrap {
-  margin: 12px;
-  border: 1px solid #c3c3c3;
-  border-radius: 3px;
 }
 
 .slidecontainer {
@@ -33,9 +38,22 @@
   opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
   -webkit-transition: 0.2s; /* 0.2 seconds transition on hover */
   transition: opacity 0.2s;
+  border-radius: 6px;
 }
 
 /* Mouse-over effects */
 .slider:hover {
   opacity: 1; /* Fully shown on mouse-over */
+}
+
+button.recommendationButton {
+  background-color: #dee9ff;
+  cursor: pointer;
+  border-radius: 3px;
+  padding: 12px 18px;
+  font-weight: 500;
+  display: flex;
+  justify-content: center;
+  border: 1px solid #c3cde0;
+  width: 100%;
 }

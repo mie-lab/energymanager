@@ -25,7 +25,6 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatNativeDateModule} from "@angular/material/core";
 import {MaterialExampleModule} from "../material.module";
 import { VizComponent } from './viz/viz.component';
-import { SensorvizComponent } from './sensorviz/sensorviz.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +33,6 @@ import { SensorvizComponent } from './sensorviz/sensorviz.component';
     SensorComponent,
     SettingsComponent,
     VizComponent,
-    SensorvizComponent
   ],
   imports: [
     BrowserModule,

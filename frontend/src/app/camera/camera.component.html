@@ -1,37 +1,59 @@
 <body>
-<h1 style="color: white; text-align: center; margin-top: 60px;">Welcome to your personal EnergyManager</h1>
-<div>
-  <h2 style="color: white; text-align: center">Kindly take a picture of the floor-plan</h2>
+  <h2 class="pretitle" style="margin-bottom: 0">Welcome to your personal</h2>
+  <h1 style="margin-top: 24px !important" class="title">EnergyManager</h1>
+  <div>
+    <h2 class="subtitle">
+      Kindly take a picture<br />of your house's floor-plan!
+    </h2>
 
-  <div class="webcam-image" *ngIf="webcamImage">
-    <img style="height: 260px; margin-left: 24px" [src]="webcamImage.imageAsDataUrl"/>
-  </div>
-  <div *ngIf="isCameraExist; else noCameraExist" style="padding-top: 20px">
-    <div style="text-align:center">
-      <webcam
-        [height]="260"
-        [trigger]="triggerObservable"
-        (imageCapture)="handleImage($event)"
-        *ngIf="showWebcam"
-        [switchCamera]="nextWebcamObservable"
-      ></webcam>
-      <br>
-      <div class="btn-group">
-        <button class="button" (click)="changeWebCame(true)">
-          Toggle Camera
-        </button>
-        <button class="button" (click)="takeSnapshot()">Take Picture</button>
+    <div
+      class="webcam-image"
+      *ngIf="webcamImage"
+      style="width: 100%; display: flex; justify-content: center"
+    >
+      <img
+        style="height: 260px; transform: scaleX(-1)"
+        [src]="webcamImage.imageAsDataUrl"
+      />
+    </div>
+    <div *ngIf="isCameraExist; else noCameraExist" style="padding-top: 20px">
+      <div style="text-align: center">
+        <webcam
+          [height]="260"
+          [trigger]="triggerObservable"
+          (imageCapture)="handleImage($event)"
+          *ngIf="showWebcam"
+          [switchCamera]="nextWebcamObservable"
+        ></webcam>
+        <br />
+        <div class="btn-group">
+          <button class="button" (click)="changeWebCame(true)">
+            Toggle Camera
+          </button>
+          <button class="button" (click)="takeSnapshot()">Take Picture</button>
+        </div>
+      </div>
+
+      <div *ngIf="errors.length > 0">
+        <h4>Error Messages:</h4>
+        <ul *ngFor="let error of errors">
+          <li>{{ error | json }}</li>
+        </ul>
       </div>
     </div>
 
-    <div *ngIf="errors.length > 0">
-      <h4>Error Messages:</h4>
-      <ul *ngFor="let error of errors">
-        <li>{{ error | json }}</li>
-      </ul>
+    <ng-template #noCameraExist> Camera device not available</ng-template>
+    <div
+      style="
+        opacity: 0.5;
+        text-align: center;
+        color: rgb(252, 252, 252);
+        margin-top: 2rem;
+      "
+    >
+      Our AI will analyze it and provide you with recommendations to save
+      energy.
     </div>
-  </div>
 
-  <ng-template #noCameraExist> Camera device not available</ng-template>
-</div>
+  </div>
 </body>
