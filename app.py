@@ -18,6 +18,7 @@ def test_method():
 def call_process_floorplan():
     # get image and image shape
     file = request.args.get("image_data")
+    print("Image shape arg", request.args.get("image_shape"))
     shape = eval(request.args.get("image_shape"))
     # decode
     b64file = base64.b64decode(file)
