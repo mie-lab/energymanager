@@ -6,12 +6,16 @@ import {WebcamModule} from "ngx-webcam";
 import {CameraComponent} from "../camera/camera.component";
 import {HttpClientModule} from "@angular/common/http";
 import { SensorComponent } from './sensor/sensor.component';
+import { VizComponent } from './viz/viz.component';
+import { SensorvizComponent } from './sensorviz/sensorviz.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CameraComponent,
-    SensorComponent
+    SensorComponent,
+    VizComponent,
+    SensorvizComponent
   ],
   imports: [
     BrowserModule,
