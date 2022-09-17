@@ -7,9 +7,9 @@ from backend.process_floorplan import process_floorplan
 app = Flask(__name__)
 
 
-@app.route("/", methods=["GET"])
-def test_method():
-    return jsonify("Welcome to EnergyManager")
+#@app.route("/", methods=["GET"])
+#def test_method():
+#    return jsonify("Welcome to EnergyManager")
 
 
 @app.route("/process_floorplan", methods=["GET", "POST"])
