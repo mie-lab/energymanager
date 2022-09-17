@@ -27,7 +27,7 @@ export class AppComponent {
 
     console.log(this.webcamImage.imageAsBase64)
 
-    this.http.post<WebcamImage>("http://localhost:8989/process_floorplan", {"image_data": this.webcamImage.imageAsBase64}, httpOptions).subscribe(data => {
+    this.http.post<WebcamImage>("https://fast-hamlet-23582.herokuapp.com/process_floorplan", {"image_data": this.webcamImage.imageAsBase64}, httpOptions).subscribe(data => {
       console.log("Did the post request to the backend!");
     })
   }
