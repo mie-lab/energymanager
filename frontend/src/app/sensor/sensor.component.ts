@@ -14,6 +14,7 @@ export class SensorComponent implements OnInit {
   private canvasRef: ElementRef;
 
   showSensor = true;
+  hasData = false;
   _temperature = 0.0;
   humidity = 0.0;
   labels: string[];
@@ -73,6 +74,7 @@ export class SensorComponent implements OnInit {
   handleSensorConnect = async (e: Event) => {
     const success = await connect(
       (temp) => {
+        this.hasData = true;
         !this.chart && this.buildGraph();
         this.temperature = temp;
         console.log('updating temp', temp);
@@ -88,6 +90,7 @@ export class SensorComponent implements OnInit {
         this.changeDetectorRef.detectChanges();
       },
       (humidity: number) => {
+        this.hasData = true;
         this.humidity = humidity;
         console.log('updating humidity', humidity);
         this.chart?.data.datasets[1].data.push(humidity);

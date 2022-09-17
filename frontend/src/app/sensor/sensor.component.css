@@ -48,7 +48,7 @@ button#sensorButton {
   align-content: center;
   justify-content: center;
   overflow: hidden;
-  box-shadow: 0px 0px 11px 4px rgba(0, 0, 0, 0.15);
+  box-shadow: 0px 0px 11px 4px rgba(0, 0, 0, 0.35);
 }
 
 .sensorValueWrap {
@@ -75,4 +75,11 @@ button#sensorButton {
 .sensorValueD {
   font-size: 1rem;
   opacity: 0.75;
+}
+
+.canvasWrap {
+  background-color: #f1f1f1;
+  border-radius: 6px;
+  border: 1px solid #dedede;
+  margin: 12px;
 }

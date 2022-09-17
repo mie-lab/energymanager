@@ -1,38 +1,44 @@
 <body>
+  <div class="sensorBox">
+    <div class="title">Time to measure the insulation of your room</div>
+    <div class="imgWrap">
+      <div class="imgCutout">
+        <img src="assets/sensor.jpg" alt="" />
+      </div>
+    </div>
 
-<div class="sensorBox">
-  <div class="title">Time to measure the insulation of your room</div>
-  <div class="imgWrap">
-    <div class="imgCutout">
-      <img src="assets/sensor.jpg" alt=""/>
+    <div class="sensorInteraction" *ngIf="showSensor">
+      <div class="sensorValueWrap">
+        <div class="sensorValue">
+          <div class="sensorValueV">{{ temperature | number: "1.1" }}</div>
+          <div class="sensorValueD">°C</div>
+        </div>
+        <div class="sensorValue">
+          <div class="sensorValueV">{{ humidity | number: "1.1" }}</div>
+          <div class="sensorValueD">%RH</div>
+        </div>
+      </div>
+      <button id="sensorButton" (click)="handleSensorConnect($event)">
+        Click to connect to sensor
+      </button>
+    </div>
+
+    <div class="sensorInteraction" *ngIf="!showSensor">
+      <div style="margin-bottom: 12px; text-align: center">
+        Data collection complete!
+      </div>
+      <button id="sensorButton" (click)="handleGoNext()">
+        Click to continue
+      </button>
     </div>
   </div>
 
-  <div class="sensorInteraction" *ngIf="showSensor">
-    <div class="sensorValueWrap">
-      <div class="sensorValue">
-        <div class="sensorValueV">{{ temperature | number: "1.1" }}</div>
-        <div class="sensorValueD">°C</div>
-      </div>
-      <div class="sensorValue">
-        <div class="sensorValueV">{{ humidity | number: "1.1" }}</div>
-        <div class="sensorValueD">%RH</div>
-      </div>
+  <div
+    style="padding-bottom: 6px"
+    [ngStyle]="{ display: hasData ? 'block' : 'none' }"
+  >
+    <div class="canvasWrap">
+      <canvas #canvas id="canvas" style="height: 240px; width: 100%"></canvas>
     </div>
-    <button id="sensorButton" (click)="handleSensorConnect($event)">
-      Click to connect to sensor
-    </button>
   </div>
-
-  <div class="sensorInteraction" *ngIf="!showSensor">
-    <div style="margin-bottom: 12px; text-align: center">Data collection complete!</div>
-    <button id="sensorButton" (click)="handleGoNext()">
-      Click to continue
-    </button>
-  </div>
-</div>
-
-<div class="canvasWrap">
-  <canvas #canvas id="canvas" style="height: 240px; width: 100%"></canvas>
-</div>
 </body>
