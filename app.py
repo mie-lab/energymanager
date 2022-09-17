@@ -9,7 +9,7 @@ app = Flask(__name__)
 
 @app.route("/", methods=["GET"])
 def test_method():
-    jsonify("Welcome to EnergyManager")
+    return jsonify("Welcome to EnergyManager")
 
 
 @app.route("/process_floorplan", methods=["GET", "POST"])
