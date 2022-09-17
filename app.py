@@ -20,7 +20,6 @@ def test_method():
 def call_process_floorplan():
     # get image and image shape
     args = ast.literal_eval(request.data.decode("utf-8"))
-    shape = eval(args.get("image_shape"))
     # decode
     b64file = base64.b64decode(args.get("image_data"))
     image = Image.open(io.BytesIO(b64file))
