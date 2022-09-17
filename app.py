@@ -30,7 +30,9 @@ def call_process_floorplan():
     out = process_floorplan(img)
 
     # return output
-    return jsonify(str(out))
+    response = jsonify(str(out))
+    response.headers.add("Access-Control-Allow-Origin", "*")
+    return response
 
 
 if __name__ == "__main__":
