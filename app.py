@@ -7,10 +7,8 @@ from backend.process_floorplan import process_floorplan
 
 app = Flask(__name__)
 CORS(app)
-app.config["CORS_HEADERS"] = "Content-Type"
 
-
-@app.route("/", methods=["GET"])
+@app.route("/", methods=["GET", "POST"])
 def test_method():
     return jsonify("Welcome to EnergyManager")
 
@@ -18,19 +16,20 @@ def test_method():
 @app.route("/process_floorplan", methods=["GET", "POST"])
 def call_process_floorplan():
     # get image and image shape
-    print("ARGS", request.args)
-    file = request.args.get("image_data")
-    print("Image shape arg", request.args.get("image_shape"))
-    shape = eval(request.args.get("image_shape"))
+    print("ARGS", request.data)
+    file = request.data.image_data
+    # print("Image shape arg", request.args.get("image_shape"))
+    # shape = eval(request.args.get("image_shape"))
     # decode
-    b64file = base64.b64decode(file)
-    img = np.fromstring(b64file, np.uint8).reshape(shape)
+    # b64file = base64.b64decode(file)
+    # img = np.fromstring(b64file, np.uint8).reshape(shape)
 
     # run img processing
-    out = process_floorplan(img)
+    # out = process_floorplan(img)
 
     # return output
-    response = jsonify(str(out))
+    print("aaaaaa")
+    response = jsonify(str("hello"))
     response.headers.add("Access-Control-Allow-Origin", "*")
     return response
 
