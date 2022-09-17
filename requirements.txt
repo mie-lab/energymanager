@@ -7,4 +7,4 @@ pytesseract
 torch==1.11.0
 scipy
 shapely
-skimage
+scikit-image
