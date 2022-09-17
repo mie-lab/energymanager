@@ -1,0 +1,12 @@
+#sensorButton {
+  background-color: #dee9ff;
+  cursor: pointer;
+  border-radius: 3px;
+  width: fit-content;
+  padding: 12px 18px;
+  font-weight: 500;
+}
+
+#sensorButton:hover {
+  background-color: #b8cfff;
+}

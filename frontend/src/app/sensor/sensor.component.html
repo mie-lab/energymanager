@@ -1,0 +1,7 @@
+<div>
+  <div id="sensorButton" (click)="handleSensorConnect($event)">
+    Click to connect to sensor
+  </div>
+  <div>{{ temperature | number: "1.1" }}°C</div>
+  <div>{{ humidity | number: "1.1" }}%RH</div>
+</div>

@@ -5,11 +5,13 @@ import {AppComponent} from './app.component';
 import {WebcamModule} from "ngx-webcam";
 import {CameraComponent} from "../camera/camera.component";
 import {HttpClientModule} from "@angular/common/http";
+import { SensorComponent } from './sensor/sensor.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CameraComponent
+    CameraComponent,
+    SensorComponent
   ],
   imports: [
     BrowserModule,
