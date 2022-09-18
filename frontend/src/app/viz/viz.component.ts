@@ -1,6 +1,7 @@
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
 import Chart from 'chart.js/auto';
 import * as THREE from 'three';
+import { Vector3 } from 'three';
 import { TrackballControls } from 'three/examples/jsm/controls/TrackballControls';
 
 @Component({
@@ -31,7 +32,7 @@ export class VizComponent implements OnInit {
   @Input('farClipping') public farClippingPlane: number = 1000;
 
   //* Helper Properties (Private Properties);
-  private camera!: THREE.PerspectiveCamera;
+  private camera!: THREE.OrthographicCamera;
   private get canvas(): HTMLCanvasElement {
     return this.canvasRef.nativeElement;
   }
@@ -68,9 +69,19 @@ export class VizComponent implements OnInit {
     this.scene.add(this.cube);
     //*Camera
     let aspectRatio = this.getAspectRatio();
-    this.camera = new THREE.PerspectiveCamera(
-      this.fieldOfView,
-      aspectRatio,
+    // this.camera = new THREE.OrthographicCamera(
+    //   this.fieldOfView,
+    //   aspectRatio,
+    //   this.nearClippingPlane,
+    //   this.farClippingPlane
+    // );
+    const width = 2;
+    const height = 2;
+    this.camera = new THREE.OrthographicCamera(
+      width / -2,
+      width / 2,
+      height / 2,
+      height / -2,
       this.nearClippingPlane,
       this.farClippingPlane
     );
@@ -104,8 +115,7 @@ export class VizComponent implements OnInit {
 
     controls.rotateSpeed = 2.0;
     controls.zoomSpeed = 1.2;
-    controls.panSpeed = 0.8;
-    controls.target.set(0, 0, 0);
+    controls.panSpeed = 1;
 
     let component: VizComponent = this;
     (function render() {
