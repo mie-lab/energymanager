@@ -1,6 +1,10 @@
+import os
 import numpy as np
 from scipy import ndimage
 import pytesseract
+
+if os.sep == "\\":
+    pytesseract.pytesseract.tesseract_cmd = "C:\\Program Files\\Tesseract-OCR\\tesseract.exe"
 
 from backend.segment import segment_img, load_model
 
@@ -14,7 +18,7 @@ def retrieve_masstab(text_in_img):
     # retrieve masstab bei 1:
     masstab = [elem for elem in text_in_img.split("\n") if "1:" in elem]
     assert len(masstab) == 1
-    masstab = (masstab[0].split(":")[1]).split(" ")[0]
+    masstab = (masstab[0].split(":")[1]).split("/")[0]
     return masstab, format_mapping[img_format]
 
 
