@@ -10,6 +10,8 @@ cd energymanager
 pip install -r requirements.txt
 ```
 
+![alt text](frontend/src/assets/screenshots.jpg)
+
 **Motivation**
 
 Europe is facing the most serious energy crises in decades. In light of exploding gas and energy prices, everyone is desperately looking for possibilities to reduce their heat consumption or improve their generation. However, the experts who can advise people about possible improvements are booked out for months. Being consulted by an energy consultant is expensive and currently scarce. We solve this problem with our digital tool, the EnergyManager.
