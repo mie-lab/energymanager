@@ -4,7 +4,7 @@ import io
 import os
 import base64
 import ast
-from flask import Flask, jsonify, request, after_this_request
+from flask import Flask, jsonify, render_template
 from flask_cors import CORS
 
 from backend.process_floorplan import process_floorplan
@@ -32,12 +32,14 @@ def call_process_floorplan():
     # run img processing
     result_dict = process_floorplan(img)
     # TODO: make visualization work
-    del result_dict["visualization"]
-    # result_dict = {}
-    # result_dict["visualization"] = base64.b64encode(img)
-    # print("-----------------------------------")
-    # print(result_dict["visualization"])
 
+    # convert image into bytes
+    out_img = Image.fromarray(result_dict["visualization"].astype("uint8"))
+    rawBytes = io.BytesIO()
+    out_img.save(rawBytes, "JPEG")
+    rawBytes.seek(0)
+    img_base64 = base64.b64encode(rawBytes.read())
+    result_dict["visualization"] = str(img_base64)
     # return output
     response = jsonify(result_dict)
     response.headers.add("Access-Control-Allow-Origin", "*")
