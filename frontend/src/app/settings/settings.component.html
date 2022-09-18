@@ -4,12 +4,17 @@
   <div
     style="
       opacity: 0.5;
-      text-align: center;
       color: rgb(252, 252, 252);
       margin-bottom: 5rem;
+      margin-left: 24px;
+      margin-right: 24px;
     "
   >
-    EnergyManager needs those to improve its recommendations.
+    <i>The</i> energymanager already determined the following. <br />
+    Your address: {{ address }} <br />
+    Your floor area: {{ area | number: "1.1" }} <br />
+    Your energy class: {{ e_class }} <br />
+    Your house circumference: {{ umfang | number: "1.1" }}
   </div>
 
   <div class="full-width-table">

@@ -4,14 +4,15 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {WebcamImage, WebcamInitError, WebcamUtil} from 'ngx-webcam';
 import {Observable, Subject} from 'rxjs';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {Router} from "@angular/router";
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Router} from '@angular/router';
 
 const httpOptions = {
   headers: new HttpHeaders({
     'Access-Control-Allow-Origin': '*',
-    'Access-Control-Allow-Headers': 'Origin, X-Requested-With, Content-Type, Accept'
-  })
+    'Access-Control-Allow-Headers':
+      'Origin, X-Requested-With, Content-Type, Accept',
+  }),
 };
 
 @Component({
@@ -31,7 +32,7 @@ export class CameraComponent implements OnInit {
   private nextWebcam: Subject<boolean | string> = new Subject<boolean | string>();
 
   webcamImage: WebcamImage | undefined;
-  title = "EnergyManager"
+  title = 'EnergyManager';
   showCamera: boolean = true;
 
   constructor(private http: HttpClient, private router: Router) {
@@ -67,13 +68,17 @@ export class CameraComponent implements OnInit {
 
     this.webcamImage = webcamImage;
 
-    this.http.post<WebcamImage>("https://fast-hamlet-23582.herokuapp.com/process_floorplan", {"image_data": this.webcamImage.imageAsBase64}, httpOptions).subscribe(data => {
-      console.log("Did the post request to the backend!");
-
-      this.router.navigate(['settings']).then(() => {
-
+    this.http
+      .post<WebcamImage>(
+        "http://localhost:8989/process_floorplan",
+        {image_data: this.webcamImage.imageAsBase64},
+        httpOptions
+      )
+      .subscribe((data) => {
+        console.log('Did the post request to the backend!');
+        window.houseData = data;
+        this.router.navigate(['settings']).then(() => {
+        });
       });
-    })
   }
-
 }
