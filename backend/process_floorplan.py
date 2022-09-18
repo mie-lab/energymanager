@@ -58,7 +58,6 @@ def process_floorplan(floorplan_img):
         building_address = "Theilerstrasse 1b, 6300 Zug, Schweiz"
         pixel_length_factor = 0.0444331833
 
-
     # pass floorplan through model
     model = load_model()
     rooms = segment_img(floorplan_img, model)
@@ -76,7 +75,10 @@ def process_floorplan(floorplan_img):
 
     # make visualization
     # Attention: current visualization is random! should be merged with sensors
-    rand_mapping = {room_nr: [np.random.rand(), 0, np.random.rand()] for room_nr in np.unique(rooms)[1:]}
+    rand_nums = np.random.rand(50)
+    rand_mapping = {
+        room_nr: [rand_nums[int(room_nr)], 0, 1 - rand_nums[int(room_nr)]] for room_nr in np.unique(rooms)[1:]
+    }
     coloured_rooms = np.zeros((list(rooms.shape) + [3])).astype(np.uint8)
     for key, rgb in rand_mapping.items():
         coloured_rooms[rooms == key] = (np.array(rgb) * 255).astype(np.uint8)
