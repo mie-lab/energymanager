@@ -35,7 +35,7 @@
       <div style="margin-bottom: 12px; text-align: center">
         Data collection complete!
       </div>
-      <button id="sensorButton" (click)="handleGoNext()">
+      <button class="sensorButton" (click)="handleGoNext()">
         Click to continue
       </button>
     </div>
@@ -49,4 +49,9 @@
       <canvas #canvas id="canvas" style="height: 240px; width: 100%"></canvas>
     </div>
   </div>
+
+
+  <button style="opacity: 0.1" class="sensorButton" (click)="handleGoNext()">
+    (Hack demo skip)
+  </button>
 </body>

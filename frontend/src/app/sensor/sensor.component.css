@@ -1,4 +1,4 @@
-button#sensorButton {
+button.sensorButton {
   background-color: #dee9ff;
   cursor: pointer;
   border-radius: 3px;
@@ -10,7 +10,7 @@ button#sensorButton {
   width: 100%;
 }
 
-#sensorButton:hover {
+.sensorButton:hover {
   background-color: #b8cfff;
 }
 
