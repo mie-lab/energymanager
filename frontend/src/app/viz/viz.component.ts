@@ -103,7 +103,7 @@ export class VizComponent implements OnInit {
     this.camera.position.y = this.cameraY;
     this.camera.position.z = this.cameraZ;
     this.camera.lookAt(0, 0, 0);
-    this.cube2.translateY(-0.2);
+    this.cube2.translateY(-0.25);
   }
 
   private getAspectRatio() {

@@ -14,11 +14,18 @@ export class SettingsComponent implements AfterContentInit {
   visualization: string;
 
   constructor(private router: Router) {
-    this.address = window.houseData['address'];
-    this.area = window.houseData['area'];
-    this.e_class = window.houseData['e_class'];
-    this.umfang = window.houseData['umfang'];
-    this.visualization = window.houseData['visualization'];
+    this.address =
+      window.houseData !== undefined ? window.houseData['address'] : undefined;
+    this.area =
+      window.houseData !== undefined ? window.houseData['area'] : undefined;
+    this.e_class =
+      window.houseData !== undefined ? window.houseData['e_class'] : undefined;
+    this.umfang =
+      window.houseData !== undefined ? window.houseData['umfang'] : undefined;
+    this.visualization =
+      window.houseData !== undefined
+        ? window.houseData['visualization']
+        : undefined;
   }
 
   ngAfterContentInit(): void {}

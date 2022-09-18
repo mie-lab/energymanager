@@ -83,7 +83,7 @@ export class SensorComponent implements OnInit {
         this.chart?.update();
         console.log(this.chart?.data.datasets[0].data);
 
-        if ((this.chart?.data.datasets[0].data.length ?? 0) > 20) {
+        if ((this.chart?.data.datasets[0].data.length ?? 0) > 8) {
           this.showSensor = false;
         }
 

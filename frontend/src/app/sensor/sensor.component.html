@@ -26,7 +26,7 @@
           <div class="sensorValueD">%RH</div>
         </div>
       </div>
-      <button id="sensorButton" (click)="handleSensorConnect($event)">
+      <button class="sensorButton" (click)="handleSensorConnect($event)">
         Click to connect to sensor
       </button>
     </div>
@@ -51,7 +51,7 @@
   </div>
 
 
-  <button style="opacity: 0.1" class="sensorButton" (click)="handleGoNext()">
+  <button style="opacity: 0.2; margin: 12px; width: calc(100% - 24px);" class="sensorButton" (click)="handleGoNext()">
     (Hack demo skip)
   </button>
 </body>
