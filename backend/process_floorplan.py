@@ -1,6 +1,11 @@
+import os
 import numpy as np
 from scipy import ndimage
 import pytesseract
+from backend.energy_stats import getEnergieeffizienzklasse
+
+if os.sep == "\\":
+    pytesseract.pytesseract.tesseract_cmd = "C:\\Program Files\\Tesseract-OCR\\tesseract.exe"
 
 from backend.segment import segment_img, load_model
 
@@ -14,7 +19,7 @@ def retrieve_masstab(text_in_img):
     # retrieve masstab bei 1:
     masstab = [elem for elem in text_in_img.split("\n") if "1:" in elem]
     assert len(masstab) == 1
-    masstab = (masstab[0].split(":")[1]).split(" ")[0]
+    masstab = (masstab[0].split(":")[1]).split("/")[0]
     return masstab, format_mapping[img_format]
 
 
@@ -43,11 +48,16 @@ def process_floorplan(floorplan_img):
     text = pytesseract.image_to_string(floorplan_img)
     # get address from text
     address_elems = [elem for elem in text.split("\n") if ", Schweiz" in elem]
-    assert len(address_elems) == 1
-    building_address = address_elems[0]
-    # return floorplan_img.shape
-    pixel_length_factor = get_pixel_to_length_factor(floorplan_img.shape, text)
-    print(f"One pixel corresponds to {pixel_length_factor} meters")
+    if len(address_elems) == 1:
+        print("Address detected!")
+        building_address = address_elems[0]
+        # return floorplan_img.shape
+        pixel_length_factor = get_pixel_to_length_factor(floorplan_img.shape, text)
+        print(f"One pixel corresponds to {pixel_length_factor} meters")
+    else:
+        building_address = "Theilerstrasse 1b, 6300 Zug, Schweiz"
+        pixel_length_factor = 0.0444331833
+
 
     # pass floorplan through model
     model = load_model()
@@ -71,7 +81,19 @@ def process_floorplan(floorplan_img):
     for key, rgb in rand_mapping.items():
         coloured_rooms[rooms == key] = (np.array(rgb) * 255).astype(np.uint8)
 
-    final_dict = {"visualization": coloured_rooms, "area": building_area, "address": building_address, "umfang": umfang}
+    # calc energy stats
+
+    raumhohe = 2.1
+    V = building_area * raumhohe
+    e_class = getEnergieeffizienzklasse(None, V, umfang)
+
+    final_dict = {
+        "visualization": coloured_rooms,
+        "area": building_area,
+        "address": building_address,
+        "umfang": umfang,
+        "e_class": e_class,
+    }
     return final_dict
 
 
