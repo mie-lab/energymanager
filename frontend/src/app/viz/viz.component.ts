@@ -176,4 +176,8 @@ export class VizComponent implements OnInit {
       },
     });
   }
+
+  handle() {
+    window.open('/assets/Energy_saving_recommendations.pdf', '_blank');
+  }
 }
