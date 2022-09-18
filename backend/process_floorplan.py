@@ -74,10 +74,10 @@ def process_floorplan(floorplan_img):
     # calc energy stats
 
     raumhohe = 2.1
-    V = building_area*
-    getEnergieeffizienzklasse(sensor_data=None, V, umfang)
+    V = building_area*raumhohe
+    e_class = getEnergieeffizienzklasse(None, V, umfang)
 
-    final_dict = {"visualization": coloured_rooms, "area": building_area, "address": building_address, "umfang": umfang}
+    final_dict = {"visualization": coloured_rooms, "area": building_area, "address": building_address, "umfang": umfang, "e_class": e_class}
     return final_dict
 
 
