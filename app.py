@@ -27,7 +27,7 @@ def call_process_floorplan():
     # image = Image.open(io.BytesIO(b64file))
     # img = np.array(image)
     # debugging:
-    img = np.load(os.path.join("tests", "test_zug.npy"))
+    img = np.load(os.path.join("tests", "test2.npy"))
 
     # run img processing
     result_dict = process_floorplan(img)

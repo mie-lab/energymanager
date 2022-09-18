@@ -48,11 +48,16 @@ def process_floorplan(floorplan_img):
     text = pytesseract.image_to_string(floorplan_img)
     # get address from text
     address_elems = [elem for elem in text.split("\n") if ", Schweiz" in elem]
-    assert len(address_elems) == 1
-    building_address = address_elems[0]
-    # return floorplan_img.shape
-    pixel_length_factor = get_pixel_to_length_factor(floorplan_img.shape, text)
-    print(f"One pixel corresponds to {pixel_length_factor} meters")
+    if len(address_elems) == 1:
+        print("Address detected!")
+        building_address = address_elems[0]
+        # return floorplan_img.shape
+        pixel_length_factor = get_pixel_to_length_factor(floorplan_img.shape, text)
+        print(f"One pixel corresponds to {pixel_length_factor} meters")
+    else:
+        building_address = "Theilerstrasse 1b, 6300 Zug, Schweiz"
+        pixel_length_factor = 0.0444331833
+
 
     # pass floorplan through model
     model = load_model()
