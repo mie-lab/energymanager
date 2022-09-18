@@ -4,10 +4,15 @@ HackZürich2022 - A tool for digital energy consulting!
 
 **Installation**
 
-Node is required to execute the frontend. For the backend, install required Python packages with
+npm is required to execute the frontend. For the backend, install required Python packages with
 ```
 cd energymanager
 pip install -r requirements.txt
+```
+
+Deploy the backend on your localhost with 
+```
+python app.py
 ```
 
 ![App](/frontend/src/assets/screenshots.jpg?raw=true "App")
