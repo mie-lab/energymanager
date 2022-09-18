@@ -21,7 +21,8 @@ export class VizComponent implements OnInit {
   @Input() public rotationSpeedX: number = 0.0;
   @Input() public rotationSpeedY: number = 0.0;
   @Input() public size: number = 50;
-  @Input() public texture: string = '/assets/Floorplan.png';
+  @Input() public texture: string = '/assets/vis.png';
+  @Input() public texture2: string = '/assets/Floorplan.png';
 
   //* Stage Properties
   @Input() public cameraX: number = 70;
@@ -43,8 +44,17 @@ export class VizComponent implements OnInit {
       window.houseData && 'visualization' in window.houseData
         ? window.houseData['visualization']
         : this.loader.load(this.texture),
+        opacity: 0.75,
+        transparent: true,
+  });
+  private material2 = new THREE.MeshBasicMaterial({
+    map:
+      window.houseData && 'visualization' in window.houseData
+        ? window.houseData['visualization']
+        : this.loader.load(this.texture2)
   });
   private cube: THREE.Mesh = new THREE.Mesh(this.geometry, this.material);
+  private cube2: THREE.Mesh = new THREE.Mesh(this.geometry, this.material2);
   private renderer!: THREE.WebGLRenderer;
   private scene!: THREE.Scene;
 
@@ -70,6 +80,7 @@ export class VizComponent implements OnInit {
     this.scene = new THREE.Scene();
     this.scene.background = new THREE.Color(0xfafafa);
     this.scene.add(this.cube);
+    this.scene.add(this.cube2);
     //*Camera
     let aspectRatio = this.getAspectRatio();
     // this.camera = new THREE.OrthographicCamera(
@@ -92,6 +103,7 @@ export class VizComponent implements OnInit {
     this.camera.position.y = this.cameraY;
     this.camera.position.z = this.cameraZ;
     this.camera.lookAt(0, 0, 0);
+    this.cube2.translateY(-0.2);
   }
 
   private getAspectRatio() {
