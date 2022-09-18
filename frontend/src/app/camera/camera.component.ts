@@ -1,11 +1,11 @@
 /**
  Taken from: https://edupala.com/how-capture-image-using-angular-camera/
  */
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { WebcamImage, WebcamInitError, WebcamUtil } from 'ngx-webcam';
-import { Observable, Subject } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Router } from '@angular/router';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {WebcamImage, WebcamInitError, WebcamUtil} from 'ngx-webcam';
+import {Observable, Subject} from 'rxjs';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Router} from '@angular/router';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -29,15 +29,14 @@ export class CameraComponent implements OnInit {
 
   // webcam snapshot trigger
   private trigger: Subject<void> = new Subject<void>();
-  private nextWebcam: Subject<boolean | string> = new Subject<
-    boolean | string
-  >();
+  private nextWebcam: Subject<boolean | string> = new Subject<boolean | string>();
 
   webcamImage: WebcamImage | undefined;
   title = 'EnergyManager';
   showCamera: boolean = true;
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router) {
+  }
 
   ngOnInit(): void {
     WebcamUtil.getAvailableVideoInputs().then(
@@ -71,14 +70,15 @@ export class CameraComponent implements OnInit {
 
     this.http
       .post<WebcamImage>(
-        'https://fast-hamlet-23582.herokuapp.com/process_floorplan',
-        { image_data: this.webcamImage.imageAsBase64 },
+        "http://localhost:8989/process_floorplan",
+        {image_data: this.webcamImage.imageAsBase64},
         httpOptions
       )
       .subscribe((data) => {
         console.log('Did the post request to the backend!');
         window.houseData = data;
-        this.router.navigate(['settings']).then(() => {});
+        this.router.navigate(['settings']).then(() => {
+        });
       });
   }
 }
