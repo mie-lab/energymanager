@@ -71,6 +71,12 @@ def process_floorplan(floorplan_img):
     for key, rgb in rand_mapping.items():
         coloured_rooms[rooms == key] = (np.array(rgb) * 255).astype(np.uint8)
 
+    # calc energy stats
+
+    raumhohe = 2.1
+    V = building_area*
+    getEnergieeffizienzklasse(sensor_data=None, V, umfang)
+
     final_dict = {"visualization": coloured_rooms, "area": building_area, "address": building_address, "umfang": umfang}
     return final_dict
 
@@ -85,3 +91,5 @@ def load_floorplan_from_pdf(file_path):
     img = convert_from_path(file_path)[0]
     return np.array(img)
 
+
+if __name__ == '__main__':

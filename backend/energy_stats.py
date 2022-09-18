@@ -28,20 +28,24 @@ def get_energie_effizienz_klasse(a):
         return 'F'
     elif a <= 250:
         return 'G'
-    elif a <= 250:
+    else:
         return 'H'
     
-def getEnergieeffizienzklasse(sensor_data, V, Umfang):
-    a = get_slope(sensor_data) # °C/s
+def getEnergieeffizienzklasse(sensor_data, V, umfang):
+    try: 
+        a = get_slope(sensor_data) # °C/s
+    except: 
+        a = 0.0000036667
+
     Energy_loss_vol_sec = a * c_air * density_air * V # °C/s * kJ/(kg K) * kg/m3 [kJ/(m3 s)]
     
-    Energy_loss_sec_m2 = Energy_loss_vol_sec / Umfang
+    Energy_loss_sec_m2 = Energy_loss_vol_sec / umfang
     
     Energy_loss_m2_year = Energy_loss_sec_m2 * 60*60*24*365
     
     # todo: reclassify with table here: https://www.haus.de/geld-recht/energieausweis-23536
     
-    return energie_effizienz_klasse(Energy_loss_m2_year)
+    return get_energie_effizienz_klasse(Energy_loss_m2_year)
 
 def get_volume(area, raumhohe):
     return area*raumhohe
