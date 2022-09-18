@@ -10,7 +10,7 @@ cd energymanager
 pip install -r requirements.txt
 ```
 
-![alt text](frontend/src/assets/screenshots.jpg)
+![App](frontend/src/assets/screenshots.jpg?raw=true "App")
 
 **Motivation**
 
