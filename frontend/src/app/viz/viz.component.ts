@@ -39,7 +39,10 @@ export class VizComponent implements OnInit {
   private loader = new THREE.TextureLoader();
   private geometry = new THREE.BoxGeometry(4, 0.03, 1.4);
   private material = new THREE.MeshBasicMaterial({
-    map: this.loader.load(this.texture),
+    map:
+      window.houseData && 'visualization' in window.houseData
+        ? window.houseData['visualization']
+        : this.loader.load(this.texture),
   });
   private cube: THREE.Mesh = new THREE.Mesh(this.geometry, this.material);
   private renderer!: THREE.WebGLRenderer;
