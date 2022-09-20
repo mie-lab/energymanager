@@ -4,7 +4,7 @@ import io
 import os
 import base64
 import ast
-from flask import Flask, jsonify, render_template
+from flask import Flask, jsonify, request
 from flask_cors import CORS
 
 from backend.process_floorplan import process_floorplan
@@ -20,18 +20,17 @@ def test_method():
 
 @app.route("/process_floorplan", methods=["GET", "POST"])
 def call_process_floorplan():
-    # # get image and image shape
-    # args = ast.literal_eval(request.data.decode("utf-8"))
-    # # decode
-    # b64file = base64.b64decode(args.get("image_data"))
-    # image = Image.open(io.BytesIO(b64file))
-    # img = np.array(image)
+    # get image and image shape
+    args = ast.literal_eval(request.data.decode("utf-8"))
+    # decode
+    b64file = base64.b64decode(args.get("image_data"))
+    image = Image.open(io.BytesIO(b64file))
+    img = np.array(image)
     # debugging:
-    img = np.load(os.path.join("tests", "test2.npy"))
+    # img = np.load(os.path.join("tests", "test2.npy"))
 
     # run img processing
     result_dict = process_floorplan(img)
-    # TODO: make visualization work
 
     # convert image into bytes
     out_img = Image.fromarray(result_dict["visualization"].astype("uint8"))

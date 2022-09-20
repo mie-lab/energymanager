@@ -17,6 +17,8 @@ python app.py
 
 ![App](/frontend/src/assets/screenshots.jpg?raw=true "App")
 
+However, to run the app, you first need to download the pre-trained ML models from CubiCasa [here](https://drive.google.com/file/d/1gRB7ez1e4H7a9Y09lLqRuna0luZO5VRK/view?usp=sharing) (see bottom for acknowledgements), and put the model weights file into the folder `backend/floortrans`.
+
 **Motivation**
 
 Europe is facing the most serious energy crises in decades. In light of exploding gas and energy prices, everyone is desperately looking for possibilities to reduce their heat consumption or improve their generation. However, the experts who can advise people about possible improvements are booked out for months. Being consulted by an energy consultant is expensive and currently scarce. We solve this problem with our digital tool, the EnergyManager.
@@ -49,5 +51,8 @@ On the other hand, we enable the user to contribute information about insulation
 
 In the next step, we plan to integrate an assessment of solarpanel-potential based on the home address and estimated roof size. We believe that many further factors could be integrated, in particular in collaboration with experts. 
 
+**Acknowledgements:**
+
+We use a pre-trained deep learning model to segment the building floorplan which was published in the paper [CubiCasa5K: A Dataset and an Improved Multi-Task Model for Floorplan Image Analysis](https://arxiv.org/abs/1904.01920v1). The model and the respective source code are taken from https://github.com/CubiCasa/CubiCasa5k/blob/master/LICENSE (available under Creative Commons Attribution-NonCommercial 4.0 International License).
 
 

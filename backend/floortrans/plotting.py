@@ -1,3 +1,8 @@
+"""
+This code and the pretrained model is taken from the CubiCasa repository
+(https://github.com/CubiCasa/CubiCasa5k) available under Creative Commons
+Attribution-NonCommercial 4.0 International License.
+"""
 import numpy as np
 from skimage import draw
 from shapely.geometry import Polygon, Point

@@ -1,3 +1,8 @@
+"""
+This code and the pretrained model is taken from the CubiCasa repository
+(https://github.com/CubiCasa/CubiCasa5k) available under Creative Commons
+Attribution-NonCommercial 4.0 International License.
+"""
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
@@ -15,26 +20,40 @@ def get_model(name, n_classes=None, version=None):
 
 
 class Residual(nn.Module):
+
     def __init__(self, numIn, numOut):
         super(Residual, self).__init__()
         self.numIn = numIn
         self.numOut = numOut
         self.bn = nn.BatchNorm2d(self.numIn)
         self.relu = nn.ReLU(inplace=True)
-        self.conv1 = nn.Conv2d(self.numIn, int(self.numOut / 2), bias=True, kernel_size=1)
+        self.conv1 = nn.Conv2d(
+            self.numIn, int(self.numOut / 2), bias=True, kernel_size=1
+        )
         self.bn1 = nn.BatchNorm2d(int(self.numOut / 2))
         self.conv2 = nn.Conv2d(
-            int(self.numOut / 2), int(self.numOut / 2), bias=True, kernel_size=3, stride=1, padding=1
+            int(self.numOut / 2),
+            int(self.numOut / 2),
+            bias=True,
+            kernel_size=3,
+            stride=1,
+            padding=1
         )
         self.bn2 = nn.BatchNorm2d(int(self.numOut / 2))
-        self.conv3 = nn.Conv2d(int(self.numOut / 2), self.numOut, bias=True, kernel_size=1)
+        self.conv3 = nn.Conv2d(
+            int(self.numOut / 2), self.numOut, bias=True, kernel_size=1
+        )
 
         if self.numIn != self.numOut:
-            self.conv4 = nn.Conv2d(self.numIn, self.numOut, bias=True, kernel_size=1)
+            self.conv4 = nn.Conv2d(
+                self.numIn, self.numOut, bias=True, kernel_size=1
+            )
 
         for m in self.modules():
             if isinstance(m, nn.Conv2d) or isinstance(m, nn.ConvTranspose2d):
-                nn.init.kaiming_normal_(m.weight, mode="fan_out", nonlinearity="relu")
+                nn.init.kaiming_normal_(
+                    m.weight, mode="fan_out", nonlinearity="relu"
+                )
                 nn.init.constant_(m.bias, 0)
             elif isinstance(m, nn.BatchNorm2d):
                 nn.init.constant_(m.weight, 1)
@@ -59,9 +78,12 @@ class Residual(nn.Module):
 
 
 class hg_furukawa_original(nn.Module):
+
     def __init__(self, n_classes):
         super(hg_furukawa_original, self).__init__()
-        self.conv1_ = nn.Conv2d(3, 64, bias=True, kernel_size=7, stride=2, padding=3)
+        self.conv1_ = nn.Conv2d(
+            3, 64, bias=True, kernel_size=7, stride=2, padding=3
+        )
         self.bn1 = nn.BatchNorm2d(64)
         self.relu1 = nn.ReLU(inplace=True)
         self.r01 = Residual(64, 128)
@@ -125,12 +147,16 @@ class hg_furukawa_original(nn.Module):
         self.bn3 = nn.BatchNorm2d(256)
         self.relu3 = nn.ReLU(inplace=True)
         self.conv4_ = nn.Conv2d(256, n_classes, bias=True, kernel_size=1)
-        self.upsample = nn.ConvTranspose2d(n_classes, n_classes, kernel_size=4, stride=4)
+        self.upsample = nn.ConvTranspose2d(
+            n_classes, n_classes, kernel_size=4, stride=4
+        )
         self.sigmoid = nn.Sigmoid()
 
         for m in self.modules():
             if isinstance(m, nn.Conv2d) or isinstance(m, nn.ConvTranspose2d):
-                nn.init.kaiming_normal_(m.weight, mode="fan_out", nonlinearity="relu")
+                nn.init.kaiming_normal_(
+                    m.weight, mode="fan_out", nonlinearity="relu"
+                )
                 nn.init.constant_(m.bias, 0)
             elif isinstance(m, nn.BatchNorm2d):
                 nn.init.constant_(m.weight, 1)
@@ -229,7 +255,9 @@ class hg_furukawa_original(nn.Module):
         """
         _, _, H, W = y.size()
         if y.shape != x.shape:
-            return F.interpolate(x, size=(H, W), mode="bilinear", align_corners=False) + y
+            return F.interpolate(
+                x, size=(H, W), mode="bilinear", align_corners=False
+            ) + y
         else:
             return x + y
 
